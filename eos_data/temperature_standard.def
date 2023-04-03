@@ -1,0 +1,16 @@
+! WARNING: this subroutine is designed to use the relation:
+! en= (g * PI^2 /(30) * temp^4 -b)
+! where pr means energy density (Gev/fm^3), temp is temperature (GeV), hbar is the Planck's Constant, c the speed of light in v.
+! we compute PI^2/30=0.32898681, while (hbar*c)**(3./4.)=0.29606692
+! Please, insert the g and b constants and the program automatically will retrieve temperature given the energy density
+
+g=37.
+b=0.
+! WARNING: this relation is not accurate, especially with b=0, put there just for semplicity!
+
+! to obtain the temperature in GeV, we have to multiply by (hbar*c)^3/4=0.197327^3/4=0.2960669195
+! here follows temperature computation:
+temp=(((en+b)/(g*0.32898681))**0.25)*0.29606692
+
+!this is for Gubser's flow test
+!temp=(en/13.8997)**0.25*0.29606692

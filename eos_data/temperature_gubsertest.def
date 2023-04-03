@@ -1,0 +1,4 @@
+!this is for ideal Gubser's flow test  
+!temp=(en/13.8997)**0.25*0.29606692
+temp=0.148909*(en)**0.25
+

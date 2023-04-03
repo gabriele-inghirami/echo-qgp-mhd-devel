@@ -1,0 +1,7 @@
+!photon gas law
+!*** It is possible to use up to 5 parameters a, b, c, d, e simply writing their values before inserting them in the formula ***
+a=3.0
+!*** Write here the equation of state pr=pr(rh, en) (i.e. the dependence of pressure pr on energy density en and density rh) ***
+!*** Units must be GeV/fm^3 ***
+pr=en/a
+

@@ -1,0 +1,4 @@
+! ******* Write here the dependency of energy density en on pressure pr and density rh *******
+!ideal gas law
+en=rh+pr/(gamma_adindex-1.)
+

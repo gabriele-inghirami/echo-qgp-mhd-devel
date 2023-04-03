@@ -1,0 +1,8 @@
+!photon gas law
+
+! ******* Write here the derivative of pressure pr respect to energy density en ******
+dprden=1./3.
+
+! ******* Write here the derivative of pressure pr respect to density rh ******
+dprdrh=0.
+

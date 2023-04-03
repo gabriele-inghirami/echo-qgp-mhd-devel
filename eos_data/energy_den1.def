@@ -1,0 +1,4 @@
+! ******* Write here the dependency of energy density en on pressure pr and density rh *******
+!photon gas EoS
+en=3.*pr
+

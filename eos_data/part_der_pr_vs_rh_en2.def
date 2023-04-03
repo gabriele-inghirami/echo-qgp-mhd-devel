@@ -1,0 +1,9 @@
+!for ideal gas law
+
+! ******* Write here the derivative of pressure pr respect to energy density en ******
+
+dprden=gamma_adindex-1.
+
+! ******* Write here the derivative of pressure pr respect to density rh ******
+
+dprdrh=-gamma_adindex+1.

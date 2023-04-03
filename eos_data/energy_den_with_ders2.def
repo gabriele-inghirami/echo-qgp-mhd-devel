@@ -1,0 +1,5 @@
+! ******* Write here the dependency of energy density en on pressure pr and density rh *******
+!ideal gas law
+en=rh+pr/(gamma_adindex-1.)
+dendrh=1.
+dendpr=1./(gamma_adindex-1.)
