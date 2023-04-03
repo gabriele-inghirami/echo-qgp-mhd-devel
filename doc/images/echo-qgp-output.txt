@@ -1,0 +1,110 @@
+ 
+ECHO-QGP STARTED
+
+   nrk   :         2
+      **** Settings and parameters: ****
+
+Test 0  *** optical-geometrical Glauber initial
+               Using Bjorken coordinates
+            This is a viscous simulation
+             Bulk viscosity is neglected
+This simulation uses MPI and the number          4
+ Evolved shear viscous tensor components: xx, yy, zz, xy, xz
+ tt, tx, ty, tz and zz are obtained imposing orth. and null trace
+
+                        Grid parameters:
+    x, y and z (or eta) number of cells:        51        51        51
+                           x range (fm):      -9.000       9.000
+                           y range (fm):      -9.000       9.000
+                  z (or eta) range (fm):      -9.000       9.000
+                      step x,y,eta (fm):       0.353       0.353       0.353
+
+                        Time parameters:
+                          starting time:     1.000
+                            ending time:     1.400
+              ending temeperature (MeV):   130.000
+                       maximum timestep:     0.005
+
+eta/s parameter for shear viscosity tens     0.080
+Temperature limit for smoothing viscosit     0.095
+                             eq of state         3
+    numerical derivatives with anal. eos         0
+
+                     Nucleus parameters:
+                              proj. mass   197.000
+                             radius (fm)     6.380
+                        W.-S. width (fm)     0.535
+                           sqrt(s) (GeV)   200.000
+                                     Y_b     5.361
+                      cross section (mb)     4.200
+                   impact parameter (fm)     5.000
+              initial hardness parameter     0.150
+       central energy density (GeV/fm^3)    20.000
+                      enezero (GeV/fm^3)  0.10E-02
+                       przero (GeV/fm^3)  0.22E-03
+                         central density     0.100
+pp rapidity distribution shift (deta - e     1.000
+pp rapidity distribution width (sigeta p     1.500
+
+        ueta A coeff. so that u^eta=A*x:     0.000
+
+
+       Computing freeze-out hypersurface
+Hypersurface computation based on temper
+              Freezeout threshold (MeV):   140.000
+time interval between hypersurfaces comp     0.050
+
+             Other numerical parameters:
+   Courant-Fr.-Lew. condition parameter:     0.200
+               Reconstruction algorithm:               MPE5 
+                                Limiter:                 MM2
+          z-step thickness function (fm)     0.001
+          r-step thickness function (fm)     0.001
+                    integration accuracy  0.10E-06
+
+                      Output parameters:
+          interval between log updating:     0.010
+       interval between output printing:     0.050
+                       output precision:    double - 8 bytes
+
+ Variables printed in the output files:
+ density
+ vx
+ vy
+ vz
+ pressure
+ energy density
+ temperature
+ entropy density
+ bulk viscosity
+ pi^tt
+ pi^tx
+ pi^ty
+ pi^tz
+ pi^xy
+ pi^xz
+ pi^yz
+ pi^xx
+ pi^yy
+ pi^zz
+ u0 or gamma Lorentz factor
+ dutdt
+ duxdx
+ duydy
+ duzdz
+ theta or expansion rate
+ vorticities will also be printed into separated output files
+ Calculating thickness function...
+check nucleus mass 196.94642
+ Done!
+ **************
+RUN NUMBER    1 - RUN    1 OF    1
+ Initializations done...
+ mkdir outr0001/
+ Grid computed...
+ Files for hypersurface computation written...
+ Summary of variables written...
+   Time:  1.00000000 - out0001.dat  1.61100000 secs
+ Copying param.dat into the output directory...
+ Pressure treshold (GeV/fm^3):   2.9468165948506055E-003  - Energy density treshold (Gev/fm^3):   1.3051308079431541E-002
+   Time:  1.05000000 - out0002.dat  1.01000000 secs

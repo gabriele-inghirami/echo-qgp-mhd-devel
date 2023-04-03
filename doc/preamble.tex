@@ -1,0 +1,180 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{blindtext}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{type1cm}%removes restiction on font size
+\usepackage{microtype} %mi­cro-ty­po­graphic ex­ten­sionschar­ac­ter pro­tru­sion and font ex­pan­sion, 
+%fur­ther­more the ad­just­ment of in­ter­word spac­ing and ad­di­tional kern­ing, 
+%as well as hy­phen­at­able let­terspac­ing (track­ing) and the pos­si­bil­ity to dis­able all or se­lected lig­a­tures.
+
+% math stuff, symbols --------------------------------------
+\usepackage{mathrsfs} % fancy math letters
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathdesign}
+\usepackage{slashed}
+\usepackage{mathtools}% \usepackage{empheq} is included in mathtools
+%------------------------------------------------------------
+\usepackage[dvips]{graphicx}
+\usepackage{bmpsize}
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor} % more shades than color
+\usepackage{fancyhdr}
+
+% tables ---------------------------------------------------
+\usepackage{booktabs}	% provides ex­tra com­mands for tables
+\usepackage{multirow,multicol}
+\usepackage{longtable}
+% for multi-pages tables:
+\usepackage{longtable}% usage here:	http://texblog.org/2011/05/15/multi-page-tables-using-longtable/
+
+% caption --------------------------------------------------
+\usepackage[font={sl,footnotesize},format=hang,labelfont={bf,sl,small},width=0.8\textwidth]{caption}
+\usepackage{subcaption}
+
+% figures/pictures -----------------------------------------
+% warning: do not move graphicx  and color from the top, 
+% they are required for dependencies
+\usepackage{stmaryrd}
+\usepackage{epic}
+\usepackage{eso-pic}
+\usepackage{eepic}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pstricks-add}
+\usepackage{wrapfig} % images surrounded by text
+% warning: subfigure already included in one of the packages
+
+
+% itemize/description/enumerate ----------------------------
+\usepackage{enumitem} %pro­vides user con­trol over the lay­out of the three ba­sic list en­vi­ron­ments
+
+% Miscellanea ----------------------------------------------
+\usepackage{cite}
+\usepackage{calc}
+%% LaTeX can manipulate numbers.The calc package provides the common infix notation.
+\usepackage{lscape} 
+%% Set a page in landscape with	\begin{landscape}
+\usepackage{url}
+%it defines the \url{...} command. 
+\usepackage{ifthen}
+% usage see here: http://alvinalexander.com/blog/post/latex/two-simple-examples-using-latex-ifthen-package
+\usepackage{centernot}
+% prints the sym­bol \not on the fol­low­ing ar­gu­ment. 
+% Un­like the de­fault \not com­mand, the sym­bol is hor­i­zon­tally cen­tered. 
+\usepackage{mhchem} % Chemistry formulas, Isotopes, etc. 
+% see usage here: https://docs.moodle.org/27/en/Chemistry_notation_using_mhchem
+\usepackage{listings}%To insert programming code within the document. 
+\lstset{breaklines=true}
+% Many languages are supported and the output can be customized.
+\usepackage{XCharter}
+% To break lines with underlined text
+\usepackage{soul}
+\usepackage{color}
+
+\usepackage[     %pdftex%, 
+                 %plainpages = false, %pdfpagelabels, 
+                 %pdfpagelayout = useoutlines,
+                 bookmarks,
+                 bookmarksopen = true,
+                 bookmarksnumbered = true,
+                 breaklinks = true,
+                 linktocpage,
+                 %pagebackref,
+                 colorlinks = true,  % was true
+                 linkcolor = blue,
+                 urlcolor  = black,
+                 citecolor = blue,
+                 anchorcolor = black,
+                 hyperindex = true,
+                 %hyperfigures
+                 ]{hyperref} % manage links within the document or to any URL when you compile in PDF
+                 
+
+
+\usepackage{lineno} %% line numbers 
+\usepackage{siunitx} %% Metric international system units
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\def\name{Gabriele Inghirami and Valentina Rolando}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+%   deletekeywords={number},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=fortran,                 % the language of the code
+%   morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+
+\lstdefinestyle{customtxt}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+%   language=none,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+%   keywordstyle=\bfseries\color{green!40!black},
+%   commentstyle=\itshape\color{purple!40!black},
+%   identifierstyle=\color{blue},
+%   stringstyle=\color{orange},
+  keywordstyle=\color{black},
+  commentstyle=\color{black},
+  identifierstyle=\color{black},
+  stringstyle=\color{black},
+}
+\newcommand{\Cred}{\color{red}}
+\newcommand{\Cblue}{\color{blue}}
+\newcommand*\mygraybox[1]{\colorbox{lightgray}{#1}}
+\newcommand{\fo}{Freeze-Out }
+\newcommand{\de}{\mathrm{d}}
+\newcommand{\mt}{m_\mathrm{T}}
+\newcommand{\pt}{p_\mathrm{T}}
+\newcommand{\rap}{\mathrm{y}}
+\newcommand{\dVtau}{\de V^{\perp \tau}}
+\newcommand{\dVx}{\de V^{\perp x}}
+\newcommand{\dVy}{\de V^{\perp y}}
+\newcommand{\dVeta}{\de V^{\perp \eta}}
+\newcommand{\chr}[3]{\Gamma^{#1}_{#2#3}}
+\hyphenation{ba-rio-nic}
+\hyphenation{dif-fe-ren-tial}
+\newenvironment{sistema}%
+{\left\lbrace\begin{array}{@{}l@{}}}%
+{\end{array}\right.}
+% The following metadata will show up in the PDF properties
+\newcommand{\citneed}{{\color{red} citation needed }}
+\newcommand{\refneed}{{\color{red} reference needed }}
+\newcommand{\integer}{{\tt \color{PineGreen} integer}}
+\newcommand{\real}{{\tt \color{PineGreen} real}}
+\newcommand{\chara}{{\tt \color{PineGreen} character}}
+% Other definitions:
+\def\x{{\boldsymbol x}}

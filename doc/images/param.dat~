@@ -1,0 +1,109 @@
+! kind of initialization
+TEST.....=0                 !0=Geometric Glauber, 1=2D shock tube, 2=1D viscous shear flow test, 3=Glauber-MonteCarlo, 4=viscous Gubser flow, 5=tabulated initial energy or entropy density profile
+! kind of simulation
+COORD....=2                 !system coordinates: 1=Minkowski, 2=Bjorken
+VISCOUS..=0                 !it takes into account viscous effects: 0=n0, 1=yes
+BULK.....=0                 !if 0 it cuts off bulk viscosity
+NS.......=0                 !if 0 it uses I-S second order theory, if not 0 it uses Navier-Stokes formalism
+CUT_TEMP.=0.08              !if > 0 it fixes the temperature under which the viscous tensor components are reduced
+! grid parameters
+NX.......=101               !number of cells along x direction
+NY.......=101               !number of cells along y direction
+NZ.......=101               !number of cells along z (Minkowski) or eta (Bjorken) direction
+XMIN.....=-12.              !minimum value for x
+XMAX.....=12.               !maximum value for x
+YMIN.....=-12.              !minimum value for y
+YMAX.....=12.               !maximum value for y
+ZMIN.....=-12.              !minimum value for z (Minkowski) or eta (Bjorken) coordinates
+ZMAX.....=12.               !maximum value for z (Minkowski) or eta (Bjorken) coordinates
+! time parameters
+TSTART...=1.0               !start simulation proper time (in fm/c)
+TSTOP....=10.               !stop simulation proper time (in fm/c)
+TEMP_END.=.135              !simulation ends when maximum temperature in GeV is less than TEMP_END
+! output parameters
+DTLOG....=0.05              !proper time interval between log updating (it should be greater than MAXDT)
+DTOUT....=0.1               !proper time interval between output printings (it should be greater than MAXDT)
+OUTP_PREC=8                 !output precision: it can be 4 (bytes) - i.e. single - or 8 (bytes) - i.e. double - precision
+MAXDT....=0.01              !maximum timestep
+RESTART..=1                 !restart possibilities: 0=never, 1=from last output
+! algorithm parameters
+CFL......=0.2               !Courant-Fr.-Lew. condition
+! beam parameters
+NUCLEUS..=Au                !symbol of the colliding ions (max 5 characters)
+RADS.....=200.              !sqrt(s_NN) (GeV)
+SIGMA_IN.=42.               !total inelastic cross section (mb)
+B........=7.                !impact parameter (fm)
+! initial conditions
+IENENTR..=0                 !initial condition: 0 (energy) / 1 (entropy)
+AH.......=0.15              !initial hardness
+ECENTER..=20.               !energy dens. or entropy dens. (depending on IENENTR) at the origin (GeV fm^-3), w. 2D/3D diff. init.
+ENEZERO..=0.0000001         !minimum value of energy density (GeV/fm^3) for the initial energy density profile
+RHOCENTER=0.1               !charge density at the origin (fm^-3)
+DETA.....=1.0               !shift of the pp rapidity distribution (Hirano)
+SIGETA...=1.5               !width of the pp rapidity distribution (Hirano)
+! viscosity parameters (active only when VISCOUS parameter=1)
+ETA_S....=0.08              !eta/entropy dens. parameter (natural units) for shear viscosity tensor - in the NS case simply ETA
+TAU_PI_C.=3.                !relaxation time coefficient for viscosity
+TRACE_IMP=zz                !shear viscous tensor component to be derived from the other with trace conditions (zz or no)
+! equation of state
+EOS......=3                 !1=analytic eos pr(rh,en), 2=analytic eos pr(T,mu), 3=tabulated eos, 4=tabulated eos from anal. eos
+TAB_EOS_FILE=qcdIEOS0.dat   !name of the file containing the tabulated eos (if used) - max 15 characters
+NUM_DER..=0                 !1=with an. eos it uses num derivatives to find other quantities, 0=user must provide explicit deriv.
+! section for Glauber MonteCarlo initial conditions
+NCONF....=500               !number of nuclear configurations
+NBCOLL...=20                !number of impact parameters per configuration
+EV_START.=28                !identifies the event from which to start among the generated events
+EV_STOP..=31                !identifies the event at which to stop among the generated events
+KAPPA....=37.0              !model parameters (taken from Eskola et al., PRC83, 034901)
+SIG......=0.6               !smearing parameter
+COLLISION=1                 !kind of collision: 1=AA, 2=dA, 3=pA
+! section for freezout hypersurface computation
+HYP_COMPU=0                 !0 disable / 1 enable hypersurface computation
+FREEZKIND=0                 !0 freezout based on temperature - 1 freezeout based on energy density
+FREEZEVAL=.140              !freezeout threshold: temperature (GeV) or energy density (GeV/fm^3)
+HYPSURFTI=0.1               !time interval between hypersurfaces computations
+! section for initialization with an energy or entropy density distribution (depending on IENENTR param) tabulated into a file
+IN_D_FILE=ed.dat            !name of the file with the tabulated energy or entropy density distribution (max 18 characters)
+! section for simulations with "tilted" initial energy density profile
+ETAM_TILT=-1                !eta_m to produce initial en. dens. tilting as in http://arxiv.org/pdf/1501.04468v2.pdf, disabled if <0
+UETA_COEF=0.                !for tests with initial u^eta!=0
+
+****************************************
+! Printed variables in the output files (please, select 1 (ON) or 0 (OFF) for each variable)
+density..=1                 
+vx.......=1                 
+vy.......=1                 
+vz.......=1                 !vz obviously means veta when using Bjorken coordinates
+pressure.=1                 
+ene_dens.=1                 
+temper...=1                 
+entr_dens=1                 
+bulk_visc=1                 !bulk viscosity, active only when VISCOUS is set to 1
+pi^tt....=1                 !tt component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^tx....=1                 !tx component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^ty....=1                 !ty component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^tz....=1                 !tz component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^xy....=1                 !xy component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^xz....=1                 !xz component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^yz....=1                 !yz component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^xx....=1                 !xx component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^yy....=1                 !yy component of shear viscosity tensor, active only when VISCOUS is set to 1
+pi^zz....=1                 !zz component of shear viscosity tensor, active only when VISCOUS is set to 1
+gamma....=1                 
+dutdt....=0                 
+duxdx....=0                 
+duydy....=0                 
+duzdz....=0                 
+theta....=0                 
+vorticity=0                 !prints the derivatives of variables into separate output files
+flows....=0                 !prints directed and elliptic flows and eccenticity in ascii files
+
+****************************************
+! Essential parameters for some nuclei.
+! Please, add custom nucleus parameters paying attention to the vertical alignment of text.
+! When echo-qgp is launched, it will select the parameters corresponding to the ion symbol indicated by the NUCLEUS parameter.
+
+Au    - projmass=197.    - radius=6.38   (fm) - delta=0.535   (W.-Sax. width - fm) - roze=0.1693  (normal nuclear density - fm^-3) - zelectrons=79  (Z electrons)
+Pb    - projmass=208.    - radius=6.62   (fm) - delta=0.546   (W.-Sax. width - fm) - roze=0.1604  (normal nuclear density - fm^-3) - zelectrons=82  (Z electrons)
+Xx000 - projmass=280.    - radius=8.76   (fm) - delta=0.765   (W.-Sax. width - fm) - roze=0.1543  (normal nuclear density - fm^-3) - zelectrons=120 (Z electrons)
+Au000 - projmass=197.    - radius=6.37   (fm) - delta=0.54    (W.-Sax. width - fm) - roze=0.17    (normal nuclear density - fm^-3) - zelectrons=79  (Z electrons)
