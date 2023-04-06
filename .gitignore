@@ -7,3 +7,6 @@
 *.out
 *.toc
 *.blg
+*.exe
+*[-._]bak
+*[-._]old
