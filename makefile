@@ -111,16 +111,16 @@ tools:	  tools.exe
 obj_tools = parallel_nompi.o holib_s.o eos_s.o
 
 tools.exe:	  ${obj_tools}
-		  ${com_ser} ${flags} ${opt} tools/timev.f90 -o tools/timev.exe
-		  ${com_ser} ${flags} ${opt} tools/fromecho.f90 -o tools/fromecho.exe
-		  ${com_ser} ${flags} ${opt} tools/fromecho2d.f90 -o tools/fromecho2d.exe
-		  ${com_ser} ${flags} ${opt} tools/readx.f90 -o tools/readx.exe
+		  ${com_ser} ${flags} ${opt} tools/fortran/timev.f90 -o tools/fortran/timev.exe
+		  ${com_ser} ${flags} ${opt} tools/fortran/fromecho.f90 -o tools/fortran/fromecho.exe
+		  ${com_ser} ${flags} ${opt} tools/fortran/fromecho2d.f90 -o tools/fortran/fromecho2d.exe
+		  ${com_ser} ${flags} ${opt} tools/fortran/readx.f90 -o tools/fortran/readx.exe
 
 
 # target: to delete the products of the compilation (executable, object files, modules...)
 clean:
-		  \rm *.mod *.o *.exe
+		  \rm -f *.mod *.o *.exe
 
 # target: to delete both the files produced by the compiler and the files produced by an echo-qgp run
 cleanall:
-		  \rm -rf *.mod *.o *.exe log wound.dat thick.dat thick_params.dat ed.dat summary.dat *.err *.out out/* graph/* postproc/readx/* outr* partcoll.dat tools/*.exe
+		  \rm -rf *.mod *.o *.exe log wound.dat thick.dat thick_params.dat ed.dat summary.dat *.err *.out out/* graph/* */postproc* outr* partcoll.dat tools/fortran/*.exe
