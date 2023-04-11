@@ -1,0 +1,220 @@
+! kind of initialization
+!0=Geometric Glauber, 1=2D shock tube, 2=1D viscous shear flow test, 3=Glauber-MonteCarlo, 4=ideal Gubser flow, 5=viscous Gubser flow, 6=tabulated initial energy, 7=Alfven2D, 8=3D blast wave
+!9=1D Bjorken MHD flow, 10=3D mhd shock, 11=1D Lyutikov, 12=1D Beraudo-Haddadi, 13=rotor test, 14=Orszag-Tang test, 16=generic debugging test, 16=external file with conserv. variables,
+!17=Glissando external initial conditions
+INIT_TYPE=0
+
+! kind of simulation
+!system coordinates: 1=Minkowski, 2=Bjorken
+COORD....=2
+
+!it takes into account viscous effects: 0=n0, 1=yes
+VISCOUS..=0                 
+
+!if 0 it cuts off bulk viscosity
+BULK.....=0 
+
+!0: no MHD, 1: ideal MHD
+MHD......=1
+
+!if 1 it applies the Dedner's method to enforce the solenoidal condition
+DIVCLEAN.=1
+
+!parameter which tunes the dumping of the divergence of B
+GLM_PARAM=10.
+
+!if 1 we suppress the initial B field where the energy density is very low
+DUMP_IN_B=0
+
+!energy density threshold under which the initial B field is suppressed if DUMP_IN_B is 1
+B_DUM_EN.=0.02
+
+!maximum ratio between magnetic and thermal pressure where the initial B field is suppressed if DUMP_IN_B is 1
+Bp_ov_Tp.=0.01
+
+!if > 0 it fixes the temperature under which the viscous tensor components are reduced
+CUT_TEMP.=0.08
+
+! grid parameters
+!number of cells along x direction
+NX.......=141
+!number of cells along y direction
+NY.......=141
+!number of cells along z (Minkowski) or eta (Bjorken) direction
+NZ.......=115
+!minimum value for x
+XMIN.....=-14
+!maximum value for x 
+XMAX.....=14 
+!minimum value for y
+YMIN.....=-14 
+!maximum value for y
+YMAX.....=14
+!minimum value for z (Minkowski) or eta (Bjorken) coordinates
+ZMIN.....=-11.5 
+!maximum value for z (Minkowski) or eta (Bjorken) coordinates
+ZMAX.....=11.5
+
+! time parameters
+!start simulation proper time (in fm/c)
+TSTART...=0.4 
+!stop simulation proper time (in fm/c)
+TSTOP....=30. 
+!simulation ends when maximum temperature in GeV is less than TEMP_END
+TEMP_END.=0.152 
+
+! output parameters
+!proper time interval between log updating (it should be greater than MAXDT)
+DTLOG....=0.01   
+!proper time interval between output printings (it should be greater than MAXDT)
+DTOUT....=0.02  
+!output precision: it can be 4 (bytes) - i.e. single - or 8 (bytes) - i.e. double - precision
+OUTP_PREC=8 
+!maximum timestep
+MAXDT....=0.002 
+!restart possibilities: 0=never, 1=from last output
+RESTART..=0  
+!output directory
+!outdir...=out_lowen
+
+! algorithm parameters
+!Courant-Fr.-Lew. condition
+CFL......=0.1 
+!reconstruction algorithm
+REC_ALGO.=TVD2
+!when a superluminal velocity is obtained, the speed is reduced to this value (in c units)
+!MAXSPEED.=0.995
+
+!initialization with external files
+!file containing initial B field
+B_in_FILE=B_Au_RHIC_1_b_8
+!file containing initial conservative variables u(kvx:kpr)
+EX_C_FILE=none
+!file containing Glissando data for initial conditions
+EX_G_FILE=none
+
+! beam parameters
+!name of the file containing the data about nuclei
+!NUC_DATAF="nuclear_data.dat"
+!symbol of the colliding ions (max 5 characters)
+NUCLEUS..=Au
+!sqrt(s_NN) (GeV)
+RADS.....=200.
+!total inelastic cross section (mb)
+SIGMA_IN.=42.    
+!impact parameter (fm)
+B........=8.0
+! initial conditions
+!initial condition: 0 (energy) / 1 (entropy)
+IENENTR..=0 
+!initial hardness
+AH.......=0.05 
+!energy dens. or entropy dens. (depending on IENENTR) at the origin (GeV fm^-3), w. 2D/3D diff. init.
+ECENTER..=55.0
+!minimum value of energy density (GeV/fm^3) for the initial energy density profile
+ENEZERO..=0.05
+!charge density at the origin (fm^-3)
+RHOCENTER=0.1
+!shift of the pp rapidity distribution (Hirano)
+DETA.....=5.9
+!width of the pp rapidity distribution (Hirano)
+SIGETA...=0.4
+! viscosity parameters (active only when VISCOUS parameter=1)
+!eta/entropy dens. parameter (natural units) for shear viscosity tensor - in the NS case simply ETA
+ETA_S....=0.1   
+!relaxation time coefficient for viscosity
+TAU_PI_C.=3.  
+!shear viscous tensor component to be derived from the other with trace conditions (zz or no)
+TRACE_IMP=zz 
+! equation of state
+!1=analytic eos p=e/3, 2=analytic eos ideal gas law, 3=tabulated eos, 4=tabulated from analytic eos
+EOS......=3 
+!name of the file containing the tabulated eos (if used) - max 15 characters
+EOS_FILE.=qcdIEOS0.dat
+!1=with an. eos it uses num derivatives to find other quantities, 0=user must provide explicit deriv.
+NUM_DER..=0 
+!algorithm to be used in the MHD case to retrieve the primitive variables
+ALG_SOLV.=1
+!time integration algorithm
+INT_ALG..=RK2
+
+! section for Glauber MonteCarlo initial conditions
+!number of nuclear configurations
+NCONF....=500
+!number of impact parameters per configuration
+NBCOLL...=1  
+!fixed impact parameter (1) or not (0) - default is 0
+FIXED_B..=1
+!identifies the event from which to start among the generated events
+EV_START.=1
+!identifies the event at which to stop among the generated events
+EV_STOP..=500   
+!model parameters (taken from Eskola et al., PRC83, 034901)
+KAPPA....=19.0 
+!smearing parameter
+SIG......=0.8 
+!kind of collision: 1=AA, 2=dA, 3=pA
+COLLISION=1
+! section for freezout hypersurface computation
+!0 disable / 1 enable hypersurface computation
+HYP_COMPU=1  
+!0 freezout based on temperature - 1 freezeout based on energy density
+FREEZKIND=0  
+!freezeout threshold: temperature (GeV) or energy density (GeV/fm^3)
+FREEZEVAL=.154
+!time interval between hypersurfaces computations
+HYPSURFTI=0.02 
+!print the charge density on the freeze-out hypersurface
+HYP_RHOEL=1
+! section for initialization with an energy or entropy density distribution (depending on IENENTR param) tabulated into a file
+!name of the file with the tabulated energy or entropy density distribution (max 18 characters)
+IN_D_FILE=ed.dat
+! section for simulations with "tilted" initial energy density profile
+!eta_m to produce initial en. dens. tilting as in http://arxiv.org/pdf/1501.04468v2.pdf, disabled if <0
+ETAM_TILT=-1 
+!for tests with initial u^eta!=0
+UETA_COEF=0. 
+! section for mhd simulations
+!source of the initial B field (1=both classical and chiral, 2=classical only, 3=chiral only)
+MAGFIELDT=1
+!electrical conducitvity (in GeV)
+EL_COND..=0.0058
+!chiral conducitvity (in GeV)
+CHIR_COND=0.0015
+!initial B amplification factor
+B_amp_fac=1.
+
+****************************************
+! Printed variables in the output files (please, select 1 (ON) or 0 (OFF) for each variable)
+density..=0                 
+vx.......=1                 
+vy.......=1                 
+vz.......=1                 
+pressure.=0                 
+ene_dens.=1                 
+temper...=1                 
+entr_dens=0                 
+bulk_visc=0                 
+pi^tt....=0                 
+pi^tx....=0                 
+pi^ty....=0                 
+pi^tz....=0                 
+pi^xy....=0                 
+pi^xz....=0                 
+pi^yz....=0                 
+pi^xx....=0                 
+pi^yy....=0                 
+pi^zz....=0                 
+gamma....=0                 
+bx.......=1                 
+by.......=1                 
+bz.......=1                 
+ex.......=0                 
+ey.......=0                 
+ez.......=0   
+glm......=0
+rc.......=1
+!prints the derivatives of variables into separate output files (and on f.o. hypersurface)              
+derivativ=0                
+!prints hydrodynamical directed and elliptic flows and eccenticity in ascii files 
+flows....=0                
