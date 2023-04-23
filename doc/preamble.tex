@@ -1,12 +1,5 @@
 \documentclass[11pt,a4paper]{report}
-\usepackage{blindtext}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage{type1cm}%removes restiction on font size
-\usepackage{microtype} %mi­cro-ty­po­graphic ex­ten­sionschar­ac­ter pro­tru­sion and font ex­pan­sion, 
-%fur­ther­more the ad­just­ment of in­ter­word spac­ing and ad­di­tional kern­ing, 
-%as well as hy­phen­at­able let­terspac­ing (track­ing) and the pos­si­bil­ity to dis­able all or se­lected lig­a­tures.
 
 % math stuff, symbols --------------------------------------
 \usepackage{mathrsfs} % fancy math letters
@@ -18,35 +11,13 @@
 \usepackage{slashed}
 \usepackage{mathtools}% \usepackage{empheq} is included in mathtools
 %------------------------------------------------------------
-\usepackage[dvips]{graphicx}
-\usepackage{bmpsize}
-\usepackage{color}
+\usepackage{graphicx}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor} % more shades than color
 \usepackage{fancyhdr}
-
-% tables ---------------------------------------------------
-\usepackage{booktabs}	% provides ex­tra com­mands for tables
-\usepackage{multirow,multicol}
-\usepackage{longtable}
-% for multi-pages tables:
-\usepackage{longtable}% usage here:	http://texblog.org/2011/05/15/multi-page-tables-using-longtable/
 
 % caption --------------------------------------------------
 \usepackage[font={sl,footnotesize},format=hang,labelfont={bf,sl,small},width=0.8\textwidth]{caption}
 \usepackage{subcaption}
-
-% figures/pictures -----------------------------------------
-% warning: do not move graphicx  and color from the top, 
-% they are required for dependencies
-\usepackage{stmaryrd}
-\usepackage{epic}
-\usepackage{eso-pic}
-\usepackage{eepic}
-\usepackage{pstricks}
-\usepackage{pst-plot}
-\usepackage{pstricks-add}
-\usepackage{wrapfig} % images surrounded by text
-% warning: subfigure already included in one of the packages
 
 
 % itemize/description/enumerate ----------------------------
@@ -57,11 +28,7 @@
 \usepackage{calc}
 %% LaTeX can manipulate numbers.The calc package provides the common infix notation.
 \usepackage{lscape} 
-%% Set a page in landscape with	\begin{landscape}
-\usepackage{url}
-%it defines the \url{...} command. 
-\usepackage{ifthen}
-% usage see here: http://alvinalexander.com/blog/post/latex/two-simple-examples-using-latex-ifthen-package
+% Set a page in landscape with	\begin{landscape}
 \usepackage{centernot}
 % prints the sym­bol \not on the fol­low­ing ar­gu­ment. 
 % Un­like the de­fault \not com­mand, the sym­bol is hor­i­zon­tally cen­tered. 
@@ -70,10 +37,6 @@
 \usepackage{listings}%To insert programming code within the document. 
 \lstset{breaklines=true}
 % Many languages are supported and the output can be customized.
-\usepackage{XCharter}
-% To break lines with underlined text
-\usepackage{soul}
-\usepackage{color}
 
 \usepackage[     %pdftex%, 
                  %plainpages = false, %pdfpagelabels, 

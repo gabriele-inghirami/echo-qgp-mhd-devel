@@ -2,14 +2,14 @@
 
 \DeclareMathOperator\erf{erf}
 \newcommand*{\vnumber}{1.5.0-$\alpha$ }
-\newcommand*{\vdate}{25-07-2017}
+\newcommand*{\vdate}{23-04-2023}
 
 \hypersetup{
   colorlinks = true,
   linkcolor = blue,
   urlcolor = black,
   pdfauthor = {\name},
-  pdfkeywords = {physics, heavy ions collision, freeze out, hydrodynamics, quark-gluon plasma, QGP},
+  pdfkeywords = {physics, heavy ions collision, freeze out, hydrodynamics, quark-gluon plasma, QGP, magnetic fields, magnetohydrodynamics},
   pdftitle = {\name: ECHO-QGP \vnumber user manual},
   pdfsubject = {Manual},
   pdfpagemode = UseNone
@@ -25,17 +25,22 @@
 \chapter{Introduction}
 \textbf{\color{red}WARNING: document in progress, incomplete and not reviewed!} 
 \section{What is ECHO-QGP}
-ECHO-QGP is a program used to model heavy-ions collisions. It solves numerically the viscous hydrodinamic equations in the Israel-Stewart theoretical frame \cite{Israel1979341}\cite{Israel1976310} in 2+1D or 3+1D in Bjorken coordinates, from the formation of quark-gluon plasma up to the freeze-out stage. The user can set up different initial conditions (Optical and Monte Carlo Glauber, as well as custom initial energy density profile) and he/she can also choose between both analytic and tabulated equations of state.\\
-The programming language chosen for ECHO-QGP is FORTRAN 2008.
+ECHO-QGP is a program used to model heavy-ions collisions. It solves numerically in 2+1D or 3+1D Bjorken (and, for several cases, Minkowski) coordinates, from the formation of quark-gluon plasma up to the freeze-out stage, either:
+\begin{enumerate}
+    \item the viscous hydrodynamics equations in the Israel-Stewart theoretical frame \cite{Israel1979341}\cite{Israel1976310}
+    \item the ideal magnetohydrodynamics equations.
+\end{enumerate}
+The users can set up different initial conditions (Optical and Monte Carlo Glauber, as well as custom initial energy density profile) and they can also choose between both analytic and tabulated equations of state.\\
+The programming language chosen for ECHO-QGP is FORTRAN 2008, with a few additional post-processing routines written in Python3 and an utility program to compute initial magnetic fields written in C.
 
 \section{License}
 The code is released under the GPL v. 2.0; please, read the file LICENSE.TXT contained into the source directory or have a look at: \url{https://www.gnu.org/licenses/gpl-2.0.html}.
 \section{Funding}
-The development of ECHO-QGP has been supported by the Italian
+The development of ECHO-QGP until 2015 has been supported by the Italian
 Ministry of Education and Research grant PRIN 2009 ``Il Quark–Gluon
 Plasma e le collisioni nucleari di alta energia'', by the INFN project
 RM31 and by funding from HIC for FAIR.\\
-G. Inghirami has been supported by HGS-HIRe, H-QM, GSI and Forschungszentrum Jülich.\\
+During the further development of ECHO-QGP G. Inghirami has been supported by HGS-HIRe, H-QM, GSI, Forschungszentrum Jülich and by the Academy of Finland, Project no. 297058.\\
 
 \section{Main limitations - what the code cannot do}
 The main limitations of the code are:\\
@@ -43,7 +48,7 @@ The main limitations of the code are:\\
 
 \item The code can describe one fluid only, expanding in ``vacuum'' \emph{(see next point about the ``vacuum'' term)}
 \item{The code needs a minimum baseline for the value of the energy density of the order of 1 KeV for the inviscid case, and 0.1 - 1 MeV for the viscous case}
-\item The code can run either dissipative hydro or ideal (i.e. non resistive) MHD simulations, but at the moment it cannot run dissipative MHD simulations
+\item The code can run either dissipative hydro or ideal (i.e. non resistive) MHD simulations, but at the moment it cannot run MHD simulations with resistive or viscous effects
 \item{The time derivatives have a limited ($\sim$ first order) accuracy}
 \item{Baryon charge evolution is properly treated only in the inviscid case; in the viscous case it only plays a numerical role, but it doesn't have a physical meaning since there are some missing terms in the equations describing its evolution}
 \item{To ensure the stability of the program, it is necessary to switch off the viscosity effects under a certain temperature (usually, less than 100MeV, i.e. well below the freezeout temperature, where the hydrodynamical description is not valid anymore)}
@@ -58,36 +63,31 @@ The main limitations of the code are:\\
 
 \chapter{How to set up and run simulations}
 \section{Requirements}
-Some requirements are assumed in order to use ECHO-QGP v1.5:
+Some requirements are assumed in order to use ECHO-QGP \vnumber:
 \begin{itemize}
  \item a working GNU/Linux environment
  \item a fortran 2008 compiler
  \item the make utility
+ \item openmpi library 
  \item the tar utility
  \item the gzip utility
 \end{itemize}
-The current version was developed and tested with:
-\begin{itemize}
- \item  Ubuntu 16.04 amd64 equipped with the GCC 5.4.0 compiler 
-\end{itemize}
+
 The makefile provided within the package contains some of the most frequent flags used for specific 
 architectures, so that an expert user can modify it at pleasure.\\
 
-Additionally, some the (optional) postprocessing tools require GDL (\url{http://www.gnudatalanguage.org}) or IDL$^\circledR$ (by EXELIS VIS) to be installed. \\
+Additionally, some the postprocessing tools require a Python3 installation with the Numpy library and other scripts GDL (\url{http://www.gnudatalanguage.org}) or IDL$^\circledR$ (by L3Harris Geospatial Solutions, Inc.). \\
 
 Root access is not needed to compile or run the program.\\
 
-\subsection{Parallel run requirements}
-To execute parallel runs of ECHO-QGP on multiple cores machines, an MPI library is also needed. The code has been tested using only the OpenMPI implementation of the Message Passing Interface (MPI) standard, version 1.6.5 (all versions from 1.3.x to 1.8.x should also work, but they were not tested).\\
-
 \section{Download of ECHO-QGP}
-The latest version is downloadable from the official ECHO-QGP website: 
-\url{http://theory.fi.infn.it/echoqgp}\\.
-
-From now on, \emph{<version>} occurences refer to the version of the code on which we are working on (e.g. ECHO-QGP-<version>.tar.gz could be ECHO-QGP-1.0.03 or ECHO-QGP-1.5.11).\\
+The latest official version is downloadable from the ECHO-QGP website: 
+\url{http://theory.fi.infn.it/echoqgp}\\
+Unofficial development versions, not extensively tested and not approved by the ECHO-QGP team, can be downloaded from:
+\url{https://github.com/gabriele-inghirami/echo-qgp-mhd-devel}
 
 The version id is composed by three numbers: a change in the first number will correspond to deep changes in the structure of the code or in the physics that it handles, a change in the second number will reflect significant improvements or minor new features, changes in the third number are reserved to bug-fixes only.\\
-Only bug-fixing versions will not introduce incompatibilities with previous versions, while first and second digit new versions probably it will.\\
+Only bug-fixing versions will not introduce incompatibilities with previous versions, while versions that differs by the first two digits probably will.\\
 
 \subsection{Check of the integrity of the file}
 It is possible to check the source code tarball integrity: it is sufficient to download the corresponding md5sum checksum file and issue the command:
@@ -1839,8 +1839,7 @@ particle, which we use in the settings file to identify it.
   \item Uses ALL the particle listed in the file {\tt pdglist.txt}
   \item Uses a the particles included in the list, between the ID corresponding
   to ID\_START and the ID corresponding to ID\_STOP 
-  \item Uses a list of particles, which IDs \ul{must be listed in the 
-  settings file, just after the {\tt part\_list} line}
+  \item Uses a list of particles, which IDs \underline{must be listed in the settings file, just after the {\tt part\_list} line}
  \end{enumerate}
  For the sake of clearness, we show in this section three examples of the using 
  of these options in the subsection \ref{sec:examples}
@@ -1849,8 +1848,7 @@ particle, which we use in the settings file to identify it.
  \item[ID\_stop] \integer - particle ID. Only used if {\tt listorseq=1}, 
  is the last particle in the  range the user wants to used
   \item[part\_list]  \integer - value.   Only used if {\tt listorseq=2}, is the total
-  number of particles listed in the settings file, \ul{which must 
-  correspond to the lines with the IDs after this parameter}.
+  number of particles listed in the settings file, \underline{which must correspond to the lines with the IDs after this parameter}.
   \item[antibar] \integer - flag. Since in the {\tt pdglist.txt} file there is no
   antibaryon listed, this switch enables (1) or disables (0) the production of the
   antibaryons corresponding to the listed baryons.
