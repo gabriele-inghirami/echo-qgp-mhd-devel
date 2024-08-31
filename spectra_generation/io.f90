@@ -197,27 +197,27 @@ module io
   read(3,113) file
   call check_file_folder_existence(outdir, LID_out, inputdir, file, LID_in)
   
-  read(3,*) 
-  read(3, 011) seed_settings 
-  read(3, 111) PTMAX_BOX
-  read(3, 111) PHIMAX_BOX
-  if (PHIMAX_BOX == 0) then
-    PHIMAX_BOX=(2.0*PIGRECO)
-  endif 
-  if (PHIMAX_BOX == 0.0) then
-    PHIMAX_BOX=(2.0*PIGRECO)
-  endif 
-  read(3, 111) YMAX_BOX
-  read(3,*) 
-  read(3, 111) mxv_pt	!(pt
-  read(3, 111) mnv_pt 	!(pt
-  read(3, 111) mxv_phi	!(phi)
-  read(3, 111) mnv_phi	!(phi)
-  read(3, 111) mxv_y 	!(y) 
-  read(3, 111) mnv_y 	!(y) 
-  read(3, 010) BIN_pt 	!(pt)
-  read(3, 010) BIN_phi 	!(phi)
-  read(3, 010) BIN_y 	!(y)  
+ ! read(3,*) 
+ ! read(3, 011) seed_settings 
+ ! read(3, 111) PTMAX_BOX
+ ! read(3, 111) PHIMAX_BOX
+ ! if (PHIMAX_BOX == 0) then
+ !   PHIMAX_BOX=(2.0*PIGRECO)
+ ! endif 
+ ! if (PHIMAX_BOX == 0.0) then
+ !   PHIMAX_BOX=(2.0*PIGRECO)
+ ! endif 
+ ! read(3, 111) YMAX_BOX
+ ! read(3,*) 
+ ! read(3, 111) mxv_pt	!(pt
+ ! read(3, 111) mnv_pt 	!(pt
+ ! read(3, 111) mxv_phi	!(phi)
+ ! read(3, 111) mnv_phi	!(phi)
+ ! read(3, 111) mxv_y 	!(y) 
+ ! read(3, 111) mnv_y 	!(y) 
+ ! read(3, 010) BIN_pt 	!(pt)
+ ! read(3, 010) BIN_phi 	!(phi)
+ ! read(3, 010) BIN_y 	!(y)  
 
   
   close(3)

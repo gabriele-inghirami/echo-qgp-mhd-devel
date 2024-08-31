@@ -1,1 +1,5 @@
-energy_den_with_ders1.def
+! ******* Write here the dependency of energy density en on pressure pr and density rh *******
+!photon gas EoS
+en=3.*pr
+dendrh=0.
+dendpr=3.
